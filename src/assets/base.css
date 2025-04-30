@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-default-background-color: #172B4D;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
