@@ -8,6 +8,7 @@ export const useListStore = defineStore('counter', () => {
 
   const addItemIntoList = (name: string) => {
     list.value.push({
+      id: Date.now(),
       name,
       goals: []
     });

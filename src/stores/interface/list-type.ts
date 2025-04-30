@@ -3,6 +3,7 @@ export type GoalType =           {
 }
 
 export type ListType = {
+  id: number
   name: string
   goals: GoalType[]
 }
