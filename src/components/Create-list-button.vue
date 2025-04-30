@@ -22,6 +22,8 @@ const createList = (event: Event) => {
   store.addItemIntoList(listName.value.trim())
 
   listName.value = '';
+
+  openModal.value = false;
 }
 
 </script>
