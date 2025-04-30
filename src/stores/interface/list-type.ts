@@ -4,5 +4,5 @@ export type GoalType =           {
 
 export type ListType = {
   name: string
-  goal?: GoalType[]
+  goals: GoalType[]
 }
