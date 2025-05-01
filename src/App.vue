@@ -10,11 +10,12 @@ const listStore = useListStore();
 
 <template>
   <HeaderComponent />
-  <main class="flex relative p-5 overflow-hidden">
+  <main class="flex relative p-5 h-full">
     <ListCard
-      v-for="item in listStore.list"
+      v-for="(item, index) in listStore.list"
       v-bind:key="item.id"
       :item="item"
+      :index="index"
     />
     <CreateListButton />
   </main>
