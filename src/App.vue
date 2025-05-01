@@ -1,10 +1,23 @@
 <script setup lang="ts">
 import HeaderComponent from "@/components/Header-component.vue";
+import CreateListButton from "./components/Create-list-button.vue";
+import { useListStore } from "./stores/list";
+import ListCard from "./components/List-card.vue";
+
+const listStore = useListStore();
+
 </script>
 
 <template>
-  <main>
-    <HeaderComponent />
+  <HeaderComponent />
+  <main class="flex relative p-5 h-full">
+    <ListCard
+      v-for="(item, index) in listStore.list"
+      v-bind:key="item.id"
+      :item="item"
+      :index="index"
+    />
+    <CreateListButton />
   </main>
 </template>
 
