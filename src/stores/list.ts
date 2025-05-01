@@ -1,13 +1,15 @@
-import { ref,  } from 'vue'
+import {  reactive, watch,  } from 'vue'
 import { defineStore } from 'pinia'
 import type { ListType } from './interface/list-type';
 
 export const useListStore = defineStore('counter', () => {
-  const list = ref<ListType[]>([]);
+  const listJson: ListType[] = JSON.parse(localStorage.getItem('list') ?? '[]');
+
+  const list = reactive<ListType[]>(!listJson ? [] : listJson);
 
 
   const addItemIntoList = (name: string) => {
-    list.value.push({
+    list.push({
       id: Date.now(),
       name,
       goals: []
@@ -15,8 +17,14 @@ export const useListStore = defineStore('counter', () => {
   }
 
   const removeItemIntoList = (index: number) => {
-    list.value.splice(index, 1);
+    list.splice(index, 1);
   }
+
+  watch(list, () => {
+    const listString = JSON.stringify(list);
+
+    localStorage.setItem("list", listString);
+  })
 
   return { list, addItemIntoList, removeItemIntoList }
 });
