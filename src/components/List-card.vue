@@ -26,7 +26,7 @@ const deleteItem = () => {
 <template>
   <section class="bg-gray-950 w-[300px] h-min p-3 rounded-[10px]" style="margin-right: 10px">
     <div class="relative flex justify-between w-full">
-      <h1 class="text-white text-3xl">{{ item.name }}</h1>
+      <input v-model="store.list[index].name" type="text" class="text-white outline-0 focus:border-blue-600 focus:border-2 rounded-[3px] px-3 text-[1.7rem]">
       <button
         type="button"
         class="relative rounded-full hover:bg-gray-500 ease-in-out duration-100 cursor-pointer"
@@ -37,12 +37,12 @@ const deleteItem = () => {
       <div
         :class="
           displayModal
-            ? 'absolute z-10 top-0 right-[-50%] py-3 rounded-[5px] bg-gray-700 w-[170px]'
+            ? 'absolute z-10 top-0 right-[-90%] py-3 rounded-[5px] bg-gray-700 w-[300px] border-[1px] border-gray-500'
             : 'hidden'
         "
       >
         <div class="flex justify-center align-center relative p-1">
-          <h1 class="text-[1.5rem] text-white" style="margin-bottom: 1rem">Ações da Lista</h1>
+          <h1 class="text-[1.6rem] text-white" style="margin-bottom: 1rem">Ações da Lista</h1>
           <button
             class="absolute top-1 right-0 rounded-[3px] cursor-pointer hover:bg-gray-500"
             style="margin-right: 3px"
@@ -52,16 +52,9 @@ const deleteItem = () => {
           </button>
         </div>
         <ul class="flex flex-col">
-          <li class="flex w-full">
-            <button
-              class="w-full text-start text-[1.5rem] cursor-pointer px-3 text-gray-300 hover:bg-gray-600"
-            >
-              Aditar Lista
-            </button>
-          </li>
           <li class="flex">
             <button
-              class="w-full text-start text-[1.5rem] cursor-pointer px-3 text-gray-300 hover:bg-gray-600"
+              class="w-full text-start text-[1.6rem] cursor-pointer px-7 text-gray-300 hover:bg-gray-600"
               @click="deleteItem"
             >
               Apagar Lista

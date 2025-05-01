@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref,  } from 'vue'
 import { defineStore } from 'pinia'
 import type { ListType } from './interface/list-type';
 
@@ -17,7 +17,6 @@ export const useListStore = defineStore('counter', () => {
   const removeItemIntoList = (index: number) => {
     list.value.splice(index, 1);
   }
-
 
   return { list, addItemIntoList, removeItemIntoList }
 });
