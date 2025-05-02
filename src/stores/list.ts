@@ -1,4 +1,4 @@
-import {  reactive, watch,  } from 'vue'
+import {  reactive, ref, watch,  } from 'vue'
 import { defineStore } from 'pinia'
 import type { ListType } from './interface/list-type';
 
@@ -31,11 +31,19 @@ export const useListStore = defineStore('counter', () => {
     list[index].cards.splice(goalIndex, 1);
   }
 
+  const updateOrderList = (listIndex: number, newIndex: number) => {
+    const item = list[listIndex];
+    list.splice(listIndex, 1);
+    list.splice(newIndex, 0, item);
+    
+  }
+
   watch(list, () => {
+    console.log('list changed', list);
     const listString = JSON.stringify(list);
 
     localStorage.setItem("list", listString);
   });
 
-  return { list, addItemIntoList, removeItemIntoList, addCardIntoList, removeCardIntoList }
+  return { list, addItemIntoList, removeItemIntoList, addCardIntoList, removeCardIntoList, updateOrderList }
 });
