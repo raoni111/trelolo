@@ -6,12 +6,13 @@ import { ref } from 'vue'
 import { useListStore } from '@/stores/list'
 import CreateCardButton from './Create-card-button.vue'
 import CardComponent from './Card-component.vue'
+import VueDraggable from 'vuedraggable'
 
 const displayModal = ref(false)
-const store = useListStore();
+const store = useListStore()
 
-const { item, index } = defineProps<{
-  index: number
+const { item, indexList } = defineProps<{
+  indexList: number
   item: ListType
 }>()
 
@@ -20,7 +21,7 @@ const setDisplayModal = () => {
 }
 
 const deleteItem = () => {
-  store.removeItemIntoList(index)
+  store.removeItemIntoList(indexList)
 }
 
 </script>
@@ -28,7 +29,11 @@ const deleteItem = () => {
 <template>
   <section class="bg-gray-950 w-[300px] h-min p-3 rounded-[10px]" style="margin-right: 10px">
     <div class="relative flex justify-between w-full">
-      <input v-model="store.list[index].name" type="text" class="text-white outline-0 focus:border-blue-600 focus:border-2 rounded-[3px] px-3 text-[1.7rem]">
+      <input
+        v-model="store.list[indexList].name"
+        type="text"
+        class="text-white outline-0 focus:border-blue-600 focus:border-2 rounded-[3px] px-3 text-[1.7rem]"
+      />
       <button
         type="button"
         class="relative rounded-full hover:bg-gray-500 ease-in-out duration-100 cursor-pointer"
@@ -66,15 +71,22 @@ const deleteItem = () => {
       </div>
     </div>
     <div>
-      <ul>
-        <CardComponent
-          v-for="(card, indexCard) in item.cards"
-          v-bind:key="card.id" :card="card"
-          :index-list="index"
-          :index-card="indexCard"
-        />
-        <CreateCardButton :index="index" />
-      </ul>
+      <VueDraggable
+        v-model="store.list[indexList].cards"
+        group="cards"
+        item-key="id"
+        :animation="200"
+      >
+        <template #item="{ element, index }">
+          <CardComponent
+            v-bind:key="element.id"
+            :card="element"
+            :index-list="indexList"
+            :index-card="index"
+          />
+        </template>
+      </VueDraggable>
+      <CreateCardButton :index="indexList" />
     </div>
   </section>
 </template>
