@@ -1,11 +1,11 @@
-export type GoalType = {
+export type CardType = {
   id: number
-  name: string
+  text: string
   completed: boolean
 }
 
 export type ListType = {
   id: number
   name: string
-  cards: GoalType[]
+  cards: CardType[]
 }

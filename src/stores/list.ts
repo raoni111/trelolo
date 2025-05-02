@@ -22,7 +22,7 @@ export const useListStore = defineStore('counter', () => {
   const addCardIntoList = (index: number, goal: string) => {
     list[index].cards.push({
       id: Date.now(),
-      name: goal,
+      text: goal,
       completed: false
     });
   }

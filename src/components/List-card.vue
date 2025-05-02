@@ -5,6 +5,7 @@ import CloseIcon from '@/components/icons/close-icon.png'
 import { ref } from 'vue'
 import { useListStore } from '@/stores/list'
 import CreateCardButton from './Create-card-button.vue'
+import CardComponent from './Card-component.vue'
 
 const displayModal = ref(false)
 const store = useListStore();
@@ -65,7 +66,15 @@ const deleteItem = () => {
       </div>
     </div>
     <div>
-      <CreateCardButton :index="index" />
+      <ul>
+        <CardComponent
+          v-for="(card, indexCard) in item.cards"
+          v-bind:key="card.id" :card="card"
+          :index-list="index"
+          :index-card="indexCard"
+        />
+        <CreateCardButton :index="index" />
+      </ul>
     </div>
   </section>
 </template>
