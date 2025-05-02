@@ -4,6 +4,7 @@ import MoreHoriz from '@/components/icons/more_horiz.svg'
 import CloseIcon from '@/components/icons/close-icon.png'
 import { ref } from 'vue'
 import { useListStore } from '@/stores/list'
+import CreateCardButton from './Create-card-button.vue'
 
 const displayModal = ref(false)
 const store = useListStore();
@@ -62,6 +63,9 @@ const deleteItem = () => {
           </li>
         </ul>
       </div>
+    </div>
+    <div>
+      <CreateCardButton :index="index" />
     </div>
   </section>
 </template>
