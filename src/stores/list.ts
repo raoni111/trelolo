@@ -35,11 +35,10 @@ export const useListStore = defineStore('counter', () => {
     const item = list[listIndex];
     list.splice(listIndex, 1);
     list.splice(newIndex, 0, item);
-    
+
   }
 
   watch(list, () => {
-    console.log('list changed', list);
     const listString = JSON.stringify(list);
 
     localStorage.setItem("list", listString);
