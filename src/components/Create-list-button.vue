@@ -48,7 +48,7 @@ const createList = (event: Event) => {
   </form>
   <button
     :class="
-      !openModal ? 'flex align-middle text-start text-[2rem] h-min text-white bg-gray-500 hover:bg-gray-400 w-[300px] px-3 py-2 rounded-[10px] cursor-pointer scale-100 hover:scale-105 active:scale-100 ease-in-out duration-100'
+      !openModal ? 'flex align-middle text-start text-[1.7rem] h-min text-white bg-gray-500 hover:bg-gray-400 w-[300px] px-3 py-2 rounded-[10px] cursor-pointer scale-100 hover:scale-105 active:scale-100 ease-in-out duration-100'
       : 'hidden'"
     type="button"
     @click="openForm"
