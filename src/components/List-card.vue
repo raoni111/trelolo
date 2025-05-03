@@ -8,20 +8,20 @@ import CreateCardButton from './Create-card-button.vue'
 import CardComponent from './Card-component.vue'
 import VueDraggable from 'vuedraggable'
 
-const displayModal = ref(false)
-const store = useListStore()
+const displayModal = ref(false);
+const store = useListStore();
 
 const { item, indexList } = defineProps<{
   indexList: number
   item: ListType
-}>()
+}>();
 
 const setDisplayModal = () => {
-  displayModal.value = !displayModal.value
+  displayModal.value = !displayModal.value;
 }
 
 const deleteItem = () => {
-  store.removeItemIntoList(indexList)
+  store.removeItemIntoList(indexList);
 }
 
 </script>

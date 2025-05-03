@@ -1,6 +1,7 @@
 export type CardType = {
   id: number
   text: string
+  description?: string
   completed: boolean
 }
 
