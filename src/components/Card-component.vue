@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { CardType } from '@/stores/interface/list-type'
 import { useListStore } from '@/stores/list'
-import CardInformation from '@/components/Card-information.vue'
+import CardInformation from '@/components/Card-information.vue';
+import DescriptionIcon from "@/components/icons/description-icon.svg";
 import { ref } from 'vue'
 
 const displayInformation = ref(false)
@@ -19,7 +20,6 @@ const { card, indexList, indexCard } = defineProps<{
   <li
     style="margin-top: 2rem"
     class="flex group bg-gray-800 hover:bg-gray-700 hover:border-[1px] hover:border-gray-200 w-full h-min p-4 rounded-[5px] text-white text-[1.5rem] cursor-pointer"
-    @click="() => (displayInformation = !displayInformation)"
   >
     <Teleport to="body">
       <CardInformation
@@ -46,8 +46,13 @@ const { card, indexList, indexCard } = defineProps<{
         id="card-completed"
       />
     </div>
-    <span class="text-[1.4rem] w-[230px]">
-      {{ card.text }}
-    </span>
+    <div @click="() => (displayInformation = !displayInformation)">
+      <span class="text-[1.4rem] w-[230px]">
+        {{ card.text }}
+      </span>
+      <div v-if="state.list[indexList].cards[indexCard].description" style="margin-top: 1rem;">
+        <img  class="w-[20px] h-[20px]" :src="DescriptionIcon" alt="">
+      </div>
+    </div>
   </li>
 </template>
