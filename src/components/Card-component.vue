@@ -13,7 +13,11 @@ const { card, indexList, indexCard } = defineProps<{
   card: CardType
   indexCard: number
   indexList: number
-}>()
+}>();
+
+const closeInformation = () => {
+  displayInformation.value = !displayInformation.value
+}
 </script>
 
 <template>
@@ -27,7 +31,8 @@ const { card, indexList, indexCard } = defineProps<{
         :cardIndex="indexCard"
         :listIndex="indexList"
         :display="displayInformation"
-        @close-button="() => (displayInformation = !displayInformation)"
+        @close-button="closeInformation"
+        @display-card="closeInformation"
         v-if="displayInformation"
       />
     </Teleport>
@@ -46,7 +51,7 @@ const { card, indexList, indexCard } = defineProps<{
         id="card-completed"
       />
     </div>
-    <div @click="() => (displayInformation = !displayInformation)">
+    <div class="w-full" @click="() => (displayInformation = !displayInformation)">
       <span class="text-[1.4rem] w-[230px]">
         {{ card.text }}
       </span>

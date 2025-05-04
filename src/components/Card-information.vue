@@ -10,9 +10,17 @@ const { card, listIndex, cardIndex } = defineProps<{
   card: CardType
   listIndex: number
   cardIndex: number
-}>()
+}>();
 
-const store = useListStore()
+const store = useListStore();
+const emit = defineEmits(['displayCard', 'closeButton'])
+
+const removeCard = () => {
+  store.removeCardIntoList(listIndex, cardIndex);
+
+  emit('displayCard');
+}
+
 </script>
 
 <template>
@@ -37,7 +45,7 @@ const store = useListStore()
         </div>
         <button
           class="cursor-pointer hover:bg-gray-900 rounded-full p-2"
-          @click="$emit('closeButton')"
+          @click="emit('closeButton')"
           style="margin-left: 1rem;"
         >
           <img class="w-13" :src="CloseIcon" alt="">
@@ -72,7 +80,10 @@ const store = useListStore()
                 </button>
               </li>
               <li>
-                <button class="group flex justify-start items-center bg-gray-600 text-start p-2 px-5 w-full text-[1.2rem] font-bold text-gray-300 rounded-[5px] hover:bg-red-500 hover:text-white cursor-pointer duration-200 ease-in-out">
+                <button
+                  class="group flex justify-start items-center bg-gray-600 text-start p-2 px-5 w-full text-[1.2rem] font-bold text-gray-300 rounded-[5px] hover:bg-red-500 hover:text-white cursor-pointer duration-200 ease-in-out"
+                  @click="removeCard"
+                >
                   <TrashIcon class="w-[12px] h-[12px] text-gray-300 group-hover:text-white duration-200 ease-in-out" style="margin-right: 0.5rem;" />
                   Apagar
                 </button>
